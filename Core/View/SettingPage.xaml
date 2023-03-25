@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PageCreator.Core.View.SettingPage"
+             xmlns:model="clr-namespace:PageCreator.Core.Model"
+             xmlns:viewmodel="clr-namespace:PageCreator.Core.ViewModel"
+             x:DataType="viewmodel:SettingPageViewModel"        
+             Title="SettingPage">
+
+    <Grid Margin="5,5,5,5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <ScrollView Grid.Row="0">
+            <StackLayout Spacing="5">
+                <Entry Placeholder="Название проекта" Text="{Binding ProjectName, Mode=TwoWay}"></Entry>
+                <Entry Placeholder="Название страницы" Text="{Binding PageName, Mode=TwoWay}"></Entry>
+                <Picker ItemsSource="{Binding PageTypeList}" SelectedItem="{Binding PageType, Mode=TwoWay}" ></Picker>
+            </StackLayout>
+        </ScrollView>
+
+        <Grid Grid.Row="1" ColumnSpacing="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+
+            <Picker ItemsSource="{Binding TemplatePropertiesList}" SelectedItem="{Binding TemplateProperties}" Grid.Row="0" Grid.Column="0" ></Picker>
+            <Entry Text="{Binding Property, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" Placeholder="Название"></Entry>
+            <Entry Text="{Binding TypeProperties, Mode=TwoWay}" Grid.Row="0" Grid.Column="2" Placeholder="Тип переменой"></Entry>
+            <Button Grid.Row="0" Grid.Column="3" Text="Добавить" Command="{Binding AddPropertyCommand}" ></Button>
+
+            <CollectionView Grid.Row="1" Grid.ColumnSpan="4" x:Name="ItemsListView"
+                ItemsSource="{Binding Properties}"
+                SelectionMode="None" >
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentView>
+                            <Grid x:DataType="model:PropertiesClass" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="{Binding Name}"></Label>
+                                <Label Grid.Column="1" Text="{Binding Type}"></Label>
+                                <Label Grid.Column="2" Text="{Binding Template}"></Label>
+                            </Grid>
+                        </ContentView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+        <Grid Grid.Row="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button Text="Импорт" Command="{Binding ImportCommand}"></Button>
+            
+        </Grid>
+
+
+    </Grid>
+
+</ContentPage>
