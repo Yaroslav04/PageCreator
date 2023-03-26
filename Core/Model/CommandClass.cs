@@ -9,6 +9,8 @@ namespace PageCreator.Core.Model
     public class CommandClass
     {
         public string Name { get; set; }
+        public string Type { get; set; }
         public string Template { get; set; }
+        public string Constructor { get; set; }
     }
 }

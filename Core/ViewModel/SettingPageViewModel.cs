@@ -54,6 +54,8 @@ namespace PageCreator.Core.ViewModel
         #region Properties
 
 
+        #region Project
+
         private string projectName;
         public string ProjectName
         {
@@ -100,6 +102,8 @@ namespace PageCreator.Core.ViewModel
             }
         }
 
+        #endregion
+
         #region Property
 
         public ObservableCollection<PropertyClass> Properties { get; }
@@ -143,6 +147,18 @@ namespace PageCreator.Core.ViewModel
 
             }
         }
+
+        private string commandType;
+        public string CommandType
+        {
+            get => commandType;
+            set
+            {
+                SetProperty(ref commandType, value);
+
+            }
+        }
+
         public ObservableCollection<string> CommandsTemplateList { get; }
 
         private string commandTemplate;
@@ -181,6 +197,7 @@ namespace PageCreator.Core.ViewModel
         {
             CommandClass command = new CommandClass();
             command.Name = Command;
+            command.Type = CommandType;
             command.Template = CommandTemplate;
             Commands.Add(command);
         }

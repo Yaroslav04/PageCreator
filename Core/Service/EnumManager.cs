@@ -36,6 +36,10 @@ namespace PageCreator.Core.Service
             "Background",
             "ViewModel",
             "Property",
+            "Command",
+            "Function",
+            "Constructor",
+
         };
     }
 }

@@ -82,12 +82,14 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
 
                 <Picker ItemsSource="{Binding CommandsTemplateList}" SelectedItem="{Binding CommandTemplate}" Grid.Row="0" Grid.Column="0" ></Picker>
                 <Entry Text="{Binding Command, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" Placeholder="Название"></Entry>
-                <Button Grid.Row="0" Grid.Column="2" Text="Добавить" Command="{Binding AddCommandCommand}" ></Button>
+                <Entry Text="{Binding CommandType, Mode=TwoWay}" Grid.Row="0" Grid.Column="2" Placeholder="Тип переменой"></Entry>
+                <Button Grid.Row="0" Grid.Column="3" Text="Добавить" Command="{Binding AddCommandCommand}" ></Button>
 
                 <CollectionView Grid.Row="1" Grid.ColumnSpan="3" x:Name="CommandsListView"
                 ItemsSource="{Binding Commands}"
@@ -100,8 +102,10 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1*"></ColumnDefinition>
                                         <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <Label Grid.Column="0" Text="{Binding Name}"></Label>
+                                    <Label Grid.Column="1" Text="{Binding Type}"></Label>
                                     <Label Grid.Column="2" Text="{Binding Template}"></Label>
                                 </Grid>
                             </ContentView>
