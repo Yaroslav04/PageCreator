@@ -13,30 +13,16 @@ namespace PageCreator.Core.ViewModel
     {
         public SettingPageViewModel()
         {
-            Properties = new ObservableCollection<PropertiesClass>();
+            Properties = new ObservableCollection<PropertyClass>();
+            Commands = new ObservableCollection<CommandClass>();
             PageTypeList = new ObservableCollection<string>(EnumManager.PageType);
-            TemplatePropertiesList = new ObservableCollection<string>(EnumManager.PropertiesTemplateType);
+            PropertiesTemplateList = new ObservableCollection<string>(EnumManager.PropertyTemplate);
+            CommandsTemplateList = new ObservableCollection<string>(EnumManager.CommandTemplate);
 
             AddPropertyCommand = new Command(async () => await AddProperty());
+            AddCommandCommand = new Command(async () => await AddCommand());
             ImportCommand = new Command(async () => await Import());
 
-        }
-
-        private async Task Import()
-        {
-            App.Setting.ProjectName = ProjectName;
-            App.Setting.PageName = PageName;
-            App.Setting.PageType = PageType;
-
-            App.Setting.Properties.Clear();
-            if (Properties.Count> 0 ) 
-            {
-                foreach(var item in Properties)
-                {
-                    App.Setting.Properties.Add(item);
-                }
-            }
-           
         }
 
         public void OnAppearing()
@@ -44,6 +30,7 @@ namespace PageCreator.Core.ViewModel
             ProjectName = App.Setting.ProjectName;
             PageName = App.Setting.PageName;
             PageType = App.Setting.PageType;
+
             Properties.Clear();
             if (App.Setting.Properties.Count> 0 ) 
             {
@@ -51,7 +38,17 @@ namespace PageCreator.Core.ViewModel
                 {
                     Properties.Add(item);
                 }
-            }        
+            }  
+            
+            Commands.Clear();
+            if (App.Setting.Commands.Count > 0)
+            {
+                foreach (var item in App.Setting.Commands)
+                {
+                    Commands.Add(item);
+                }
+            }
+
         }
 
         #region Properties
@@ -103,8 +100,10 @@ namespace PageCreator.Core.ViewModel
             }
         }
 
-        public ObservableCollection<PropertiesClass> Properties { get; }
-        public ObservableCollection<string> TemplatePropertiesList { get; }
+        #region Property
+
+        public ObservableCollection<PropertyClass> Properties { get; }
+        public ObservableCollection<string> PropertiesTemplateList { get; }
 
         private string templateProperties;
         public string TemplateProperties
@@ -130,20 +129,87 @@ namespace PageCreator.Core.ViewModel
 
         #endregion
 
+        #region Commands
+
+        public ObservableCollection<CommandClass> Commands { get; }
+
+        private string command;
+        public string Command
+        {
+            get => command;
+            set
+            {
+                SetProperty(ref command, value);
+
+            }
+        }
+        public ObservableCollection<string> CommandsTemplateList { get; }
+
+        private string commandTemplate;
+        public string CommandTemplate
+        {
+            get => commandTemplate;
+            set
+            {
+                SetProperty(ref commandTemplate, value);
+
+            }
+        }
+
+        #endregion
+
+        #endregion
+
         #region Command
 
         public Command AddPropertyCommand { get; }
+        public Command AddCommandCommand { get; }
         public Command ImportCommand { get; }
 
         #endregion
 
         private async Task AddProperty()
         {
-            PropertiesClass property = new PropertiesClass();
+            PropertyClass property = new PropertyClass();
             property.Name = Property;
             property.Template = TemplateProperties;
             property.Type = TypeProperties;
             Properties.Add(property);
+        }
+
+        private async Task AddCommand()
+        {
+            CommandClass command = new CommandClass();
+            command.Name = Command;
+            command.Template = CommandTemplate;
+            Commands.Add(command);
+        }
+
+        private async Task Import()
+        {
+            App.Setting.ProjectName = ProjectName;
+            App.Setting.PageName = PageName;
+            App.Setting.PageType = PageType;
+
+            App.Setting.Properties.Clear();
+            if (Properties.Count > 0)
+            {
+                foreach (var item in Properties)
+                {
+                    App.Setting.Properties.Add(item);
+                }
+            }
+
+            App.Setting.Commands.Clear();
+            if (Commands.Count > 0)
+            {
+                foreach (var item in Commands)
+                {
+                    App.Setting.Commands.Add(item);
+                }
+            }
+
+            await PopUpManager.ShowMessage("Импорт", "Успешно");
         }
     }
 }

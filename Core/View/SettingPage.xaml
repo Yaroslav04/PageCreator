@@ -5,7 +5,7 @@
              xmlns:model="clr-namespace:PageCreator.Core.Model"
              xmlns:viewmodel="clr-namespace:PageCreator.Core.ViewModel"
              x:DataType="viewmodel:SettingPageViewModel"        
-             Title="SettingPage">
+             Title="Параметры">
 
     <Grid Margin="5,5,5,5">
         <Grid.RowDefinitions>
@@ -22,46 +22,94 @@
             </StackLayout>
         </ScrollView>
 
-        <Grid Grid.Row="1" ColumnSpacing="5">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="35"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
+            <Grid Grid.Column="0" ColumnSpacing="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
 
-            <Picker ItemsSource="{Binding TemplatePropertiesList}" SelectedItem="{Binding TemplateProperties}" Grid.Row="0" Grid.Column="0" ></Picker>
-            <Entry Text="{Binding Property, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" Placeholder="Название"></Entry>
-            <Entry Text="{Binding TypeProperties, Mode=TwoWay}" Grid.Row="0" Grid.Column="2" Placeholder="Тип переменой"></Entry>
-            <Button Grid.Row="0" Grid.Column="3" Text="Добавить" Command="{Binding AddPropertyCommand}" ></Button>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-            <CollectionView Grid.Row="1" Grid.ColumnSpan="4" x:Name="ItemsListView"
+
+                <Picker ItemsSource="{Binding PropertiesTemplateList}" SelectedItem="{Binding TemplateProperties}" Grid.Row="0" Grid.Column="0" ></Picker>
+                <Entry Text="{Binding Property, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" Placeholder="Название"></Entry>
+                <Entry Text="{Binding TypeProperties, Mode=TwoWay}" Grid.Row="0" Grid.Column="2" Placeholder="Тип переменой"></Entry>
+                <Button Grid.Row="0" Grid.Column="3" Text="Добавить" Command="{Binding AddPropertyCommand}" ></Button>
+
+                <CollectionView Grid.Row="1" Grid.ColumnSpan="4" x:Name="PropertiesListView"
                 ItemsSource="{Binding Properties}"
                 SelectionMode="None" >
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <ContentView>
-                            <Grid x:DataType="model:PropertiesClass" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Text="{Binding Name}"></Label>
-                                <Label Grid.Column="1" Text="{Binding Type}"></Label>
-                                <Label Grid.Column="2" Text="{Binding Template}"></Label>
-                            </Grid>
-                        </ContentView>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <ContentView>
+                                <Grid x:DataType="model:PropertyClass" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Text="{Binding Name}"></Label>
+                                    <Label Grid.Column="1" Text="{Binding Type}"></Label>
+                                    <Label Grid.Column="2" Text="{Binding Template}"></Label>
+                                </Grid>
+                            </ContentView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+
+            </Grid>
+
+            <Grid Grid.Column="1" ColumnSpacing="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+
+                <Picker ItemsSource="{Binding CommandsTemplateList}" SelectedItem="{Binding CommandTemplate}" Grid.Row="0" Grid.Column="0" ></Picker>
+                <Entry Text="{Binding Command, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" Placeholder="Название"></Entry>
+                <Button Grid.Row="0" Grid.Column="2" Text="Добавить" Command="{Binding AddCommandCommand}" ></Button>
+
+                <CollectionView Grid.Row="1" Grid.ColumnSpan="3" x:Name="CommandsListView"
+                ItemsSource="{Binding Commands}"
+                SelectionMode="None" >
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <ContentView>
+                                <Grid x:DataType="model:CommandClass" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Text="{Binding Name}"></Label>
+                                    <Label Grid.Column="2" Text="{Binding Template}"></Label>
+                                </Grid>
+                            </ContentView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+            
         </Grid>
 
         <Grid Grid.Row="2">
@@ -73,7 +121,6 @@
             <Button Text="Импорт" Command="{Binding ImportCommand}"></Button>
             
         </Grid>
-
 
     </Grid>
 

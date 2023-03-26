@@ -7,13 +7,23 @@
     Shell.FlyoutBehavior="Flyout">
 
     <ShellContent
-        Title="Setting"
+        Title="Параметры"
         ContentTemplate="{DataTemplate local:SettingPage}"
         Route="SettingPage" />
 
     <ShellContent
-        Title="Page"
+        Title="Форма"
         ContentTemplate="{DataTemplate local:CreatePagePage}"
         Route="CreatePagePage" />
+
+    <ShellContent
+        Title="Бекгрануд"
+        ContentTemplate="{DataTemplate local:CreateBackgroundPage}"
+        Route="CreateBackgroundPage" />
+
+    <ShellContent
+        Title="Модель"
+        ContentTemplate="{DataTemplate local:CreateViewModelPage}"
+        Route="CreateViewModelPage" />
 
 </Shell>

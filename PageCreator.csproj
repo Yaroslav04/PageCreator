@@ -49,17 +49,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Core\Service\DataBase\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Compile Update="Core\View\SettingPage.xaml.cs">
 	    <DependentUpon>SettingPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Core\View\CreateBackgroundPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Core\View\CreatePagePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Core\View\CreateViewModelPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Core\View\SettingPage.xaml">

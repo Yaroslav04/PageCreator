@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace PageCreator.Core.Model
 {
-    public class PropertiesClass
+    public class CommandClass
     {
         public string Name { get; set; }
-        public string Type { get; set; }
         public string Template { get; set; }
     }
 }

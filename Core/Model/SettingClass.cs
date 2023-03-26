@@ -10,15 +10,17 @@ namespace PageCreator.Core.Model
     {
         public string ProjectName { get; set; }
         public string PageName { get; set; }
-        public string PageType { get; set; } //list, simple
-        public List<PropertiesClass> Properties { get; set; }
+        public string PageType { get; set; }
+        public List<PropertyClass> Properties { get; set; }
+        public List<CommandClass> Commands { get; set; }
 
         public SettingClass()
         {
             ProjectName= string.Empty;
             PageName= string.Empty;
             PageType= string.Empty;
-            Properties = new List<PropertiesClass>();
+            Properties = new List<PropertyClass>();
+            Commands = new List<CommandClass>();
         }
 
     }

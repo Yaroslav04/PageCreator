@@ -17,5 +17,10 @@ namespace PageCreator.Core.Service
         {
             return Path.Combine(@"D:\Projects\PageCreatorTemplate", _path);
         }
+
+        public static string GetFilePath(string _type, string _name)
+        {
+            return Path.Combine(GetPath(), Path.Combine(_type, _name + ".txt"));
+        }
     }
 }

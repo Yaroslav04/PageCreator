@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PageCreator.Core.View.CreatePagePage"
+             x:Class="PageCreator.Core.View.CreateBackgroundPage"
              xmlns:model="clr-namespace:PageCreator.Core.Model"
              xmlns:viewmodel="clr-namespace:PageCreator.Core.ViewModel"
-             x:DataType="viewmodel:CreatePagePageViewModel"        
-             Title="Форма">
+             x:DataType="viewmodel:CreateBackgroundPageViewModel"  
+             Title="Бекграунд">
+    
     <Grid Margin="5,5,5,5">
 
         <Grid.RowDefinitions>
@@ -21,6 +22,7 @@
         <Entry Grid.Row="0" Grid.Column="0"></Entry>
 
         <Editor Text="{Binding Text, Mode=OneWay}" Grid.Row="1" Grid.Column="0"></Editor>
-        
+
     </Grid>
+
 </ContentPage>

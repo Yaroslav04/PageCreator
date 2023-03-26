@@ -5,4 +5,6 @@ global using System.Text;
 global using System.Threading.Tasks;
 
 global using PageCreator.Core.ViewModel;
+global using PageCreator.Core.Model;
+global using PageCreator.Core.Service.DataBase;
 
