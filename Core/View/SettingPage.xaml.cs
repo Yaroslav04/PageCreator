@@ -1,4 +1,6 @@
 
+using System.Diagnostics;
+
 namespace PageCreator.Core.View;
 
 public partial class SettingPage : ContentPage
@@ -15,5 +17,11 @@ public partial class SettingPage : ContentPage
     {
         base.OnAppearing();
         viewModel.OnAppearing();
+    }
+
+    protected override void OnDisappearing()
+    {      
+        base.OnDisappearing();
+        viewModel.OnDisappearing();
     }
 }

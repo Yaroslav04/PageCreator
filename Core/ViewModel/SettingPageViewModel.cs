@@ -3,6 +3,7 @@ using PageCreator.Core.Service;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace PageCreator.Core.ViewModel
 
             AddPropertyCommand = new Command(async () => await AddProperty());
             AddCommandCommand = new Command(async () => await AddCommand());
-            ImportCommand = new Command(async () => await Import());
+            ImportCommand = new Command(Import);
 
         }
 
@@ -51,10 +52,15 @@ namespace PageCreator.Core.ViewModel
 
         }
 
+        public void OnDisappearing()
+        {
+            Import();
+        }
+
         #region Properties
 
 
-        #region Project
+            #region Project
 
         private string projectName;
         public string ProjectName
@@ -202,7 +208,7 @@ namespace PageCreator.Core.ViewModel
             Commands.Add(command);
         }
 
-        private async Task Import()
+        private void Import()
         {
             App.Setting.ProjectName = ProjectName;
             App.Setting.PageName = PageName;
@@ -225,8 +231,6 @@ namespace PageCreator.Core.ViewModel
                     App.Setting.Commands.Add(item);
                 }
             }
-
-            await PopUpManager.ShowMessage("Импорт", "Успешно");
         }
     }
 }

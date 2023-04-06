@@ -10,12 +10,12 @@ namespace PageCreator.Core.Service
     {
         public static string GetPath()
         {
-            return @"D:\Projects\PageCreatorTemplate";
+            return @"D:\Projects\Settings\MauiPageCreator";
         }
 
         public static string GetPath(string _path)
         {
-            return Path.Combine(@"D:\Projects\PageCreatorTemplate", _path);
+            return Path.Combine(GetPath(), _path);
         }
 
         public static string GetFilePath(string _type, string _name)
