@@ -39,7 +39,6 @@ namespace PageCreator.Core.Service
             "Command",
             "Function",
             "Constructor",
-
         };
     }
 }

@@ -1,0 +1,1 @@
+$commandName$Command = new Command<$commandType$>(async () => await $commandName$());

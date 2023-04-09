@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.Versioning;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,7 +25,6 @@ namespace PageCreator.Core.ViewModel
             AddPropertyCommand = new Command(async () => await AddProperty());
             AddCommandCommand = new Command(async () => await AddCommand());
             ImportCommand = new Command(Import);
-
         }
 
         public void OnAppearing()

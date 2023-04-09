@@ -1,0 +1,9 @@
+private $propertyType$ $propertyMinor$;
+public $propertyType$ $propertyMajor$
+{
+get => $propertyMinor$;
+set
+{
+SetProperty(ref $propertyMinor$, value);
+}
+}

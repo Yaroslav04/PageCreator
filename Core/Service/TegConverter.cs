@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PageCreator.Core.Service.DataBase
+namespace PageCreator.Core.Service
 {
     public static class TegConverter
     {
@@ -61,7 +61,7 @@ namespace PageCreator.Core.Service.DataBase
             }
 
 
-            if (!String.IsNullOrWhiteSpace(GetConstructors(_setting)))
+            if (!string.IsNullOrWhiteSpace(GetConstructors(_setting)))
             {
                 text = text.Replace("$constructors$", GetConstructors(_setting));
             }
@@ -89,7 +89,8 @@ namespace PageCreator.Core.Service.DataBase
 
         private static string ConvertPropertyToPropertyText(PropertyClass _property)
         {
-            string text = TextManager.GetSimpleTextFromPath(FileManager.GetFilePath(EnumManager.FoldersType[3], _property.Template));
+            //string text = TextManager.GetSimpleTextFromPath(FileManager.GetFilePath(EnumManager.FoldersType[3], _property.Template));
+            string text = TextManager.GetSimpleTextFromTemplate(EnumManager.FoldersType[3], _property.Template);
             text = text.Replace("$propertyMajor$", _property.Name);
             string properyMinor = _property.Name[0].ToString().ToLower() + _property.Name.Substring(1);
             text = text.Replace("$propertyMinor$", properyMinor);
@@ -113,7 +114,8 @@ namespace PageCreator.Core.Service.DataBase
         }
         private static string ConvertCommandToCommandText(CommandClass _command)
         {
-            string text = TextManager.GetSimpleTextFromPath(FileManager.GetFilePath(EnumManager.FoldersType[4], _command.Template));
+            //string text = TextManager.GetSimpleTextFromPath(FileManager.GetFilePath(EnumManager.FoldersType[4], _command.Template));
+            string text = TextManager.GetSimpleTextFromTemplate(EnumManager.FoldersType[4], _command.Template);
             text = text.Replace("$commandName$", _command.Name);
             if (!string.IsNullOrWhiteSpace(_command.Type))
             {
@@ -143,7 +145,8 @@ namespace PageCreator.Core.Service.DataBase
 
         private static string GetFunctionFromCommand(CommandClass _command)
         {
-            string text = TextManager.GetSimpleTextFromPath(FileManager.GetFilePath(EnumManager.FoldersType[5], "Простой"));
+            //string text = TextManager.GetSimpleTextFromPath(FileManager.GetFilePath(EnumManager.FoldersType[5], "Простой"));
+            string text = TextManager.GetSimpleTextFromTemplate(EnumManager.FoldersType[5], "Простой");
             text = text.Replace("$functionName$", _command.Name);
             return text;
         }
@@ -158,7 +161,7 @@ namespace PageCreator.Core.Service.DataBase
 
             if (_setting.Properties.Count > 0)
             {
-                foreach(var item in _setting.Properties)
+                foreach (var item in _setting.Properties)
                 {
                     if (item.Template == EnumManager.PropertyTemplate[1])
                     {
@@ -171,7 +174,7 @@ namespace PageCreator.Core.Service.DataBase
             {
                 foreach (var item in _setting.Commands)
                 {
-                        text = text + GetCommandConstructor(item) + "\n\n";                   
+                    text = text + GetCommandConstructor(item) + "\n\n";
                 }
             }
 
@@ -181,7 +184,8 @@ namespace PageCreator.Core.Service.DataBase
 
         private static string GetPropertyConstructor(PropertyClass _property)
         {
-            string text = TextManager.GetSimpleTextFromPath(FileManager.GetFilePath(EnumManager.FoldersType[6], "Параметр"));
+            //string text = TextManager.GetSimpleTextFromPath(FileManager.GetFilePath(EnumManager.FoldersType[6], "Параметр"));
+            string text = TextManager.GetSimpleTextFromTemplate(EnumManager.FoldersType[6], "Параметр");
             text = text.Replace("$propertyMajor$", _property.Name);
             text = text.Replace("$propertyType$", _property.Type);
             return text;
@@ -189,7 +193,8 @@ namespace PageCreator.Core.Service.DataBase
 
         private static string GetCommandConstructor(CommandClass _command)
         {
-            string text = TextManager.GetSimpleTextFromPath(FileManager.GetFilePath(EnumManager.FoldersType[6], "Команда"));
+            //string text = TextManager.GetSimpleTextFromPath(FileManager.GetFilePath(EnumManager.FoldersType[6], "Команда"));
+            string text = TextManager.GetSimpleTextFromTemplate(EnumManager.FoldersType[6], "Команда");
             text = text.Replace("$commandName$", _command.Name);
             if (!string.IsNullOrWhiteSpace(_command.Type))
             {

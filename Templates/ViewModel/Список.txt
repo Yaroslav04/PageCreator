@@ -1,0 +1,33 @@
+public class $pageName$ViewModel : BaseViewModel
+{
+
+public $pageName$ViewModel()
+{
+
+$constructors$
+
+}
+
+public void OnAppearing()
+{          
+}
+
+#region Properties
+
+$properties$
+
+#endregion
+
+#region Commands
+
+$commands$
+
+#endregion
+
+#region Functions
+
+$functions$
+
+#endregion
+
+}

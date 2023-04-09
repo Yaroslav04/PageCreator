@@ -20,6 +20,7 @@ namespace PageCreator.Core.ViewModel
                 & !String.IsNullOrWhiteSpace(App.Setting.PageType))
             {
                 Text = TextToShow.GetPageText(App.Setting);
+                Text = Text;
             }
         }
 

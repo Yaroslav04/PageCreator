@@ -1,0 +1,1 @@
+public Command<$commandType$> $commandName$Command { get; }

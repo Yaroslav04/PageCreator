@@ -49,6 +49,49 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="PageCreatorTemplate.zip" />
+	  <None Remove="Templates\Background\Список.txt" />
+	  <None Remove="Templates\Command\Простой.txt" />
+	  <None Remove="Templates\Constructor\Команда.txt" />
+	  <None Remove="Templates\Constructor\Параметр.txt" />
+	  <None Remove="Templates\Function\Простой.txt" />
+	  <None Remove="Templates\Page\Список.txt" />
+	  <None Remove="Templates\Property\Коллекция.txt" />
+	  <None Remove="Templates\Property\Простой.txt" />
+	  <None Remove="Templates\ViewModel\Список.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Templates\Background\Список.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="Templates\Command\Простой.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="Templates\Constructor\Команда.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="Templates\Constructor\Параметр.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="Templates\Function\Простой.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="Templates\Page\Список.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="Templates\Property\Коллекция.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="Templates\Property\Простой.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="Templates\ViewModel\Список.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Compile Update="Core\View\SettingPage.xaml.cs">
 	    <DependentUpon>SettingPage.xaml</DependentUpon>
 	  </Compile>
