@@ -11,13 +11,19 @@ namespace PageCreator.Core.ViewModel
 
         public CreateViewModelPageViewModel()
         {
-
+            Run();
         }
 
         public void OnAppearing()
         {
+           
+        }
+
+        private async void Run()
+        {
+            await Task.Delay(1000);
             if (!String.IsNullOrWhiteSpace(App.Setting.ProjectName) & !String.IsNullOrWhiteSpace(App.Setting.PageName)
-                & !String.IsNullOrWhiteSpace(App.Setting.PageType))
+               & !String.IsNullOrWhiteSpace(App.Setting.PageType))
             {
                 Text = TextToShow.GetViewModelText(App.Setting);
             }

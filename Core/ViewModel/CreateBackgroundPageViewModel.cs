@@ -11,11 +11,18 @@ namespace PageCreator.Core.ViewModel
     {
         public CreateBackgroundPageViewModel()
         {
-
+            
         }
 
         public void OnAppearing()
         {
+            Run();
+            
+        }
+
+        private async void Run()
+        {
+            await Task.Delay(1000);
             if (!String.IsNullOrWhiteSpace(App.Setting.ProjectName) & !String.IsNullOrWhiteSpace(App.Setting.PageName)
                 & !String.IsNullOrWhiteSpace(App.Setting.PageType))
             {

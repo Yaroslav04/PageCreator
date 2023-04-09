@@ -24,6 +24,7 @@ namespace PageCreator.Core.ViewModel
 
             AddPropertyCommand = new Command(async () => await AddProperty());
             AddCommandCommand = new Command(async () => await AddCommand());
+
             ClearCommand = new Command(async () => await Clear());
         }
 

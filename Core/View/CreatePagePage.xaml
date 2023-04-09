@@ -20,7 +20,7 @@
 
         <Entry Grid.Row="0" Grid.Column="0"></Entry>
 
-        <Editor Text="{Binding Text, Mode=OneWay}" Grid.Row="1" Grid.Column="0"></Editor>
+        <Editor Text="{Binding Text, Mode=TwoWay}" Grid.Row="1" Grid.Column="0"></Editor>
         
     </Grid>
 </ContentPage>
