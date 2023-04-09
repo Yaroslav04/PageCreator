@@ -134,7 +134,7 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button Text="Импорт" Command="{Binding ImportCommand}"></Button>
+            <Button Text="Очистить" Command="{Binding ClearCommand}"></Button>
 
         </Grid>
 

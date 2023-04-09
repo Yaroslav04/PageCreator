@@ -24,7 +24,7 @@ namespace PageCreator.Core.ViewModel
 
             AddPropertyCommand = new Command(async () => await AddProperty());
             AddCommandCommand = new Command(async () => await AddCommand());
-            ImportCommand = new Command(Import);
+            ClearCommand = new Command(async () => await Clear());
         }
 
         public void OnAppearing()
@@ -61,7 +61,7 @@ namespace PageCreator.Core.ViewModel
         #region Properties
 
 
-            #region Project
+        #region Project
 
         private string projectName;
         public string ProjectName
@@ -187,7 +187,7 @@ namespace PageCreator.Core.ViewModel
 
         public Command AddPropertyCommand { get; }
         public Command AddCommandCommand { get; }
-        public Command ImportCommand { get; }
+        public Command ClearCommand { get; }
 
         #endregion
 
@@ -207,6 +207,22 @@ namespace PageCreator.Core.ViewModel
             command.Type = CommandType;
             command.Template = CommandTemplate;
             Commands.Add(command);
+        }
+
+        private async Task Clear()
+        {
+            ProjectName = string.Empty;
+            PageName= string.Empty;
+            PageType = null;
+            TemplateProperties= string.Empty;
+            Property = string.Empty;
+            TypeProperties = string.Empty;
+            Properties.Clear();
+            CommandTemplate = string.Empty;
+            Command = string.Empty;
+            CommandType = string.Empty;
+            Commands.Clear();
+
         }
 
         private void Import()
