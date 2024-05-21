@@ -1,0 +1,110 @@
+[QueryProperty(nameof(Input), nameof(Input))]
+
+public class $pageName$ViewModel : BaseViewModel
+{
+
+public $pageName$ViewModel()
+{
+
+$constructors$
+
+  SaveCommand = new Command(async () => await Save());
+
+  ClearCommand = new Command(async () => await Clear());
+
+  DeleteCommand = new Command(async () => await Delete());
+
+}
+
+public void OnAppearing()
+{          
+}
+
+#region Properties
+
+  private string input;
+  public string Input
+  {
+      get => input;
+      set
+      {
+          SetProperty(ref input, value);
+          Load();
+      }
+  }
+
+private string saveButton;
+public string SaveButton
+{
+    get => saveButton;
+    set
+    {
+        SetProperty(ref saveButton, value);
+    }
+}
+
+private bool isDeleteExist;
+public bool IsDeleteExist
+{
+    get => isDeleteExist;
+    set
+    {
+        SetProperty(ref isDeleteExist, value);
+    }
+}
+
+$properties$
+
+#endregion
+
+#region Commands
+
+  public Command SaveCommand { get; }
+
+  public Command ClearCommand { get; }
+
+  public Command DeleteCommand { get; }
+
+$commands$
+
+#endregion
+
+#region Functions
+
+ private async Task Save()
+ {
+
+ }
+
+ private async Task Clear()
+ {
+
+ }
+
+ private async Task Delete()
+ {
+
+ }
+
+ private async Task Load()
+ {
+     List<string> inputList = new List<string>(Input.Split(";"));
+
+     if (inputList[0] == "0")
+     {
+         SaveButton = "Зберегти";
+         Clear();
+     }
+     else if (inputList[0] == "1")
+     {
+         List<string> parameterList = new List<string>(inputList[1].Split(","));
+         SaveButton = "Редагувати";
+         
+     }
+ }
+
+$functions$
+
+#endregion
+
+}

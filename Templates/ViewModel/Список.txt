@@ -6,13 +6,28 @@ public $pageName$ViewModel()
 
 $constructors$
 
+Items = new ObservableCollection<Class>();
+
+LoadItemsCommand = new Command(async () => await LoadItems());
+
+AddCommand = new Command(async () => await Add());
+
+SearchCommand = new Command(async () => await Search());
+
+ClearCommand = new Command(async () => await Clear());
+
+ItemTappedCommand = new Command<Class>(ItemTapped);
+
 }
 
 public void OnAppearing()
-{          
+{
+    IsBusy = true;          
 }
 
 #region Properties
+
+public ObservableCollection<Class> Items { get; }
 
 $properties$
 
@@ -20,11 +35,66 @@ $properties$
 
 #region Commands
 
+public Command LoadItemsCommand { get; }
+
+public Command AddCommand { get; }
+
+public Command SearchCommand { get; }
+
+public Command ClearCommand { get; }
+
+public Command<Class> ItemTappedCommand { get; }
+
 $commands$
 
 #endregion
 
 #region Functions
+
+private async Task LoadItems()
+{
+    //IsBusy = true;
+
+    try
+    {
+        Items.Clear();
+
+        foreach (var item in DataBase)
+        {
+            Items.Add(item);
+        }
+    }
+    catch
+    {
+
+    }
+    finally
+    {
+        IsBusy = false;
+    }
+}
+
+private async Task Add()
+{
+    //await Shell.Current.GoToAsync($"{nameof(AddPersonPage)}?{nameof(AddPersonPageViewModel.Input)}={0};0");
+}
+
+private async Task Search()
+{
+
+}
+
+private async Task Clear()
+{
+
+}
+
+private async void ItemTapped(Class item)
+{
+    if (item == null) { return; }
+
+     // await Shell.Current.GoToAsync($"{nameof(AddPersonPage)}?{nameof(AddPersonPageViewModel.Input)}={1};{item.SurName},{item.Name},{item.SecondName}");
+}
 
 $functions$
 

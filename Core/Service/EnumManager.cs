@@ -12,7 +12,9 @@ namespace PageCreator.Core.Service
 
         public static List<string> PageType = new List<string>
         {
+            "Простой",
             "Список",
+            "Ввод",
         };
 
         public static List<string> PropertyTemplate = new List<string>

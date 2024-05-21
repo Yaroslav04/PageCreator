@@ -1,0 +1,13 @@
+$pageName$ViewModel viewModel;
+public $pageName$()
+{
+InitializeComponent();
+viewModel = new $pageName$ViewModel();
+BindingContext = viewModel;
+}
+
+protected override void OnAppearing()
+{
+base.OnAppearing();
+viewModel.OnAppearing();
+}

@@ -6,5 +6,92 @@
              xmlns:viewmodel="clr-namespace:$projectName$.Core.ViewModel"
              x:DataType="viewmodel:$pageName$ViewModel"                
              Title="">
+
+  <Grid RowSpacing="10">
+      <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="300"></ColumnDefinition>
+          <ColumnDefinition Width="*"></ColumnDefinition>
+      </Grid.ColumnDefinitions>
+
+      <!--SerchPanel-->
+      <Grid Grid.Column="0" Padding="5,5,5,5" BackgroundColor="{StaticResource Gray100}">
+          <Grid Margin="2,2,2,2" Padding="2,2,2,2">
+              <Grid.RowDefinitions>
+                  <RowDefinition Height="*"></RowDefinition>
+                  <RowDefinition Height="auto"></RowDefinition>
+              </Grid.RowDefinitions>
+
+              <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*"></ColumnDefinition>
+              </Grid.ColumnDefinitions>
+
+              <!--Параметри пошуку-->
+              <Grid Grid.Row="0" Margin="2,2,2,2">
+                  <ScrollView VerticalScrollBarVisibility="Never">
+                      <StackLayout Spacing="5">
+                          <!--Параметри пошуку-->
+                      </StackLayout>
+                  </ScrollView>
+              </Grid>
+       
+              <Grid Grid.Row="1" Margin="2,2,2,2" ColumnSpacing="5" RowSpacing="5">
+                  <Grid.RowDefinitions>
+                      <RowDefinition Height="*"></RowDefinition>
+                      <RowDefinition Height="*"></RowDefinition>
+                  </Grid.RowDefinitions>
+
+                  <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*"></ColumnDefinition>
+                  </Grid.ColumnDefinitions>
+
+                  <Grid Grid.Row="0" ColumnSpacing="5">
+                      <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="1*"></ColumnDefinition>
+                          <ColumnDefinition Width="1*"></ColumnDefinition>
+                      </Grid.ColumnDefinitions>
+                      <Button Grid.Column="1" Text="Пошук" Command="{Binding SearchCommand}"></Button>
+                      <Button Grid.Column="0" Text="Очистити" Command="{Binding ClearCommand}"></Button>
+                  </Grid>
+                  <Button Grid.Row="1" Text="Додати" Command="{Binding AddCommand}"></Button>
+              </Grid>
+          </Grid>
+      </Grid>
+
+      <!--ListPanel-->
+      <Grid Grid.Column="1" Margin="2,2,2,2" Padding="2,2,2,2">
+          <Grid.RowDefinitions>
+              <RowDefinition Height="*"></RowDefinition>
+          </Grid.RowDefinitions>
+
+          <RefreshView Grid.Row="1" x:DataType="viewmodel:$pageName$ViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+              <CollectionView x:Name="ItemsListView"
+              ItemsSource="{Binding Items}"
+              SelectionMode="None" >
+                  <CollectionView.ItemTemplate>
+                      <DataTemplate>
+		          <!--x:DataType="model:PersonClass"-->
+                          <ContentView>
+                              <Frame Margin="1,1,1,1">
+                                  <!--Content-->
+                              </Frame>
+                              <ContentView.GestureRecognizers>
+                                  <TapGestureRecognizer 
+                    NumberOfTapsRequired="1">
+                                  </TapGestureRecognizer>
+                                  <TapGestureRecognizer 
+                    NumberOfTapsRequired="2"
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:$pageName$ViewModel}}, Path=ItemTappedCommand}"		
+                    CommandParameter="{Binding .}">
+                                  </TapGestureRecognizer>
+                              </ContentView.GestureRecognizers>
+                          </ContentView>
+                      </DataTemplate>
+                  </CollectionView.ItemTemplate>
+              </CollectionView>
+          </RefreshView>
+
+      </Grid>
+
+  </Grid>
   
 </ContentPage>
